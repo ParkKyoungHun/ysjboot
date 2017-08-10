@@ -28,7 +28,8 @@ public class BoardController {
 	BoardMapper bm;	
 
 	@RequestMapping(value="/",method = RequestMethod.GET)
-	public  String getBoardList(@RequestParam(required=false) Map<String, String> pm,@ModelAttribute Paging page, Model model) {
+	public  String getBoardList(@RequestParam Map<String, String> pm,@ModelAttribute Paging page, Model model) {
+		log.info("nowPage => {} ", page.getNowPage());
 		pm.put("snum", Integer.toString(page.getStartNum()));
 		pm.put("enum",Integer.toString( page.getRowCnt()));
 		List<BoardInfo> boardList =  bm.getBoardList(pm);
